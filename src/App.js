@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Destinations from './components/Destinations';
+import Packages from './components/Packages';
+import Testimonials from './components/Testimonials';
+import RentalServices from './components/RentalServices';
+import Footer from './components/Footer';
+import ContactFab from './components/ContactFab';
+import ContactModal from './components/ContactModal';
 import './App.css';
 
 function App() {
+  const [isContactModalOpen, setContactModalOpen] = useState(false);
+  const openContactModal = () => setContactModalOpen(true);
+  const closeContactModal = () => setContactModalOpen(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar openContactModal={openContactModal} />
+      <Hero />
+      <Destinations />
+      <Packages />
+      <RentalServices />
+      <Testimonials />
+      <Footer openContactModal={openContactModal} />
+      <ContactFab openContactModal={openContactModal} />
+      <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
     </div>
   );
 }
